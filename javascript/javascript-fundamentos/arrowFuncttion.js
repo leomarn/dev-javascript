@@ -7,9 +7,8 @@ function somar(a,b) {
 add = (a,b) => a + b
 
 
-console.log(dobro(5,5)(2))
-console.log(add(5,6))
-console.log(somar(5,6))
+console.log(add(add(add(5,5),5),add(5,5)))
+
 
 
 
