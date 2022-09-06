@@ -1,0 +1,1 @@
+export default (base: number, altura: number):number => base *  altura
