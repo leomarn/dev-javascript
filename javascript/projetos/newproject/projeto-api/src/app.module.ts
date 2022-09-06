@@ -1,10 +1,8 @@
-import { Module } from '@nestjs/common';
-
-
-import { VeiculosModule } from './veiculos/veiculos.module';
+import { Module } from '@nestjs/common'
+import { ProductModule } from './product/product.module';
 
 @Module({
-  imports: [VeiculosModule],
+  imports: [ProductModule],
   controllers: [],
   providers: [],
 })

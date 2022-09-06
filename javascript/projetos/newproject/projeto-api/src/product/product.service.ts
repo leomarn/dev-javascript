@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/database/PrismaService';
-import { VeiculosDTO } from './veiculos.dto';
+import { PrismaRepository } from '../infrastructure/database/prisma.repository';
+import { VeiculosDTO } from './dto/home-product.dto';
 
 @Injectable()
-export class VeiculosService {
-    constructor(private prisma: PrismaService) { }
+export class ProductService {
+    constructor(private prisma: PrismaRepository) { }
 
     async create(data: VeiculosDTO) {
         const veiculo = await this.prisma.veiculos.create({
@@ -16,6 +16,7 @@ export class VeiculosService {
     async findAll(){
         return this.prisma.veiculos.findMany();
     }
+    
     async findUniqueId(id: number){
         const veiculoExists = await this.prisma.veiculos.findUnique({
             where: {
