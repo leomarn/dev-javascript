@@ -1,15 +1,14 @@
 {
-  "name": "curso-typescript",
+  "name": "teste",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "start": "live-server"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "live-server": "^1.2.2"
+    "axios": "^0.27.2"
   }
 }
