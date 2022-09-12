@@ -1,24 +1,40 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { VeiculosDTO } from './dto/home-product.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 
 @Controller('product')
 export class ProductController {
-  constructor(private readonly productService: ProductService) {}
+  constructor(private readonly productService: ProductService) { }
 
-  @Post()
-  async create(@Body() data: VeiculosDTO){
-    return this.productService.create(data);
+  @Post('upload')
+  @UseInterceptors(FileInterceptor('image'))
+  uploadFile(@UploadedFile() image: Express.Multer.File, @Body() data: VeiculosDTO) {
+    data.image = image.buffer.toString('base64')
+    if(data.image){
+      data.image = image.buffer.toString('base64')
+    }else{
+      data.image = "Sem imagem cadastrada!"
+    }
+    if(!isNaN(data.price/1)){
+      data.price = Number(data.price)
+    }
+    return this.productService.create(data)
   }
 
+  // @Post()
+  // async create(@Body() data: VeiculosDTO) {
+  //   return this.productService.create(data);
+  // }
+
   @Get()
-  async findAll(){
+  async findAll() {
     return this.productService.findAll();
   }
 
   @Get(':id')
-  async findUniqueId(@Param('id') id: string){
+  async findUniqueId(@Param('id') id: string) {
     const idInt = parseInt(id)
     return this.productService.findUniqueId(idInt);
   }
@@ -30,7 +46,7 @@ export class ProductController {
   }
 
   @Delete(':id')
-  async delete(@Param('id') id: string){
+  async delete(@Param('id') id: string) {
     const idInt = parseInt(id)
     return this.productService.delete(idInt)
   }

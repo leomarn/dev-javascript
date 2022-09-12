@@ -1,6 +1,7 @@
 -- CreateTable
 CREATE TABLE "Veiculos" (
     "id" SERIAL NOT NULL,
+    "image" TEXT NOT NULL DEFAULT '#',
     "model" TEXT NOT NULL,
     "color" TEXT NOT NULL,
     "price" INTEGER NOT NULL,

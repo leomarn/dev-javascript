@@ -12,6 +12,7 @@ datasource db {
 
 model Veiculos {
   id Int @id @default(autoincrement())
+  image String?
   model String
   color String
   price Int

@@ -1,5 +1,6 @@
 export class VeiculosDTO {
     id?: number;
+    image?: string;
     model: string;
     color: string;
     price: number;
@@ -17,6 +18,7 @@ export class VeiculosDTO {
 
 // export type VeiculosDTO = {
 //     id?: number;
+//     image?: string;
 //     model: string;
 //     color: string;
 //     price: number;
