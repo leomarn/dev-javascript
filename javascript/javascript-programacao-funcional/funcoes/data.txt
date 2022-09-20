@@ -1,3 +1,0 @@
-${valor1}
-${valor2}
-${soma}

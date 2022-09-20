@@ -1,32 +1,23 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { VeiculosDTO } from './dto/home-product.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
-
+import { multerOptions } from '../infrastructure/config/multer.config';
 
 @Controller('product')
 export class ProductController {
   constructor(private readonly productService: ProductService) { }
 
+  @UseInterceptors(FileInterceptor('image', multerOptions))
   @Post('upload')
-  @UseInterceptors(FileInterceptor('image'))
-  uploadFile(@UploadedFile() image: Express.Multer.File, @Body() data: VeiculosDTO) {
-    data.image = image.buffer.toString('base64')
-    if(data.image){
-      data.image = image.buffer.toString('base64')
-    }else{
-      data.image = "Sem imagem cadastrada!"
-    }
+  uploadFile(@Body() data: VeiculosDTO, @UploadedFile() image: Express.Multer.File,) {  
     if(!isNaN(data.price/1)){
       data.price = Number(data.price)
     }
+    //data.image = image.path.replace('\\','/').replace('client/public','')
+    data.image = image.path.replace('\\','/')
     return this.productService.create(data)
   }
-
-  // @Post()
-  // async create(@Body() data: VeiculosDTO) {
-  //   return this.productService.create(data);
-  // }
 
   @Get()
   async findAll() {
@@ -39,15 +30,24 @@ export class ProductController {
     return this.productService.findUniqueId(idInt);
   }
 
+  @UseInterceptors(FileInterceptor('image', multerOptions))
   @Put(':id')
-  async update(@Param('id') id: string, @Body() data: VeiculosDTO) {
+  async update(@Param('id') id: string, @Body() data: VeiculosDTO, @UploadedFile() image: Express.Multer.File,) {
+    if(!isNaN(data.price/1)){
+      data.price = Number(data.price)
+    }
+    //data.image = image.path.replace('\\','/').replace('client/public','')
+    data.image = image.path.replace('\\','/')
+
     const idInt = parseInt(id)
     return this.productService.update(idInt, data)
   }
 
   @Delete(':id')
   async delete(@Param('id') id: string) {
+    
     const idInt = parseInt(id)
     return this.productService.delete(idInt)
   }
 }
+
