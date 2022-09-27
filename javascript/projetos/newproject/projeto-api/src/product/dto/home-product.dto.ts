@@ -14,14 +14,4 @@ export class VeiculosDTO {
         this.description = description;
         this.status = status;
     }
-};
-
-// export type VeiculosDTO = {
-//     id?: number;
-//     image?: string;
-//     model: string;
-//     color: string;
-//     price: number;
-//     description: string;
-//     status: boolean;
-// };
+}
