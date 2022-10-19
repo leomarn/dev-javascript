@@ -1,6 +1,7 @@
 const pfs = require('fs/promises')
 const fs = require('fs')
 const path = require('path')
+const { resolve } = require('path')
 
 function lerNomesdeArquivos(caminho) {
     return new Promise (resolve => {
@@ -10,7 +11,6 @@ function lerNomesdeArquivos(caminho) {
         })  
     })
 }
-
 const caminho = path.join(__dirname, '/legendas')
 
 async function receberNomes(){
@@ -18,11 +18,13 @@ async function receberNomes(){
     const nomes = await lerNomesdeArquivos(caminho)
     
     const conteudo = []
-    for(let index = 0; index < nomes.length; index++){
-        const diretorio = path.join(__dirname, '/legendas', nomes[index])
-        conteudo[index] = fs.readFileSync(diretorio)
-    }
-    console.log(conteudo[2].toString())
+    return new Promise((resolve) => {
+        for(let index = 0; index < nomes.length; index++){
+            const diretorio = path.join(__dirname, '/legendas', nomes[index])
+            conteudo[index] = fs.readFileSync(diretorio).toString()
+        }
+        resolve(conteudo)
+    })
 }
 
-receberNomes()
+receberNomes().then(conteudo => console.log(conteudo[2]))
