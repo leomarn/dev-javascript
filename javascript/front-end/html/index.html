@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercícios HTML</title>
 </head>
+<link rel="stylesheet" href="http://files.cod3r.com.br/curso-web/tree.css">
 <body>
     <header>
         <p>Exercícios HTML</p>
@@ -19,6 +21,11 @@
         <ul>
             <li><a href="exercicios/teste1.html">01 - Teste</a></li>
             <li><a href="exercicios/teste2.html">02 - Teste</a></li>
+            <li><a href="exercicios/listas.html">03 - Listas</a></li>
+            <li><a href="exercicios/projetoLista.html">03 - Projeto Listas</a></li>
+            <li><a href="exercicios/tabela.html">04 - tabela</a></li>
+            <li><a href="exercicios/form/form.html">05 - Formulario</a></li>
+            <li><a href="exercicios/imagens.html">06 - slide</a></li>
         </ul>
     </nav>
     <section id="conteudo"></section>
@@ -26,7 +33,7 @@
         Curso de HTML
     </footer>
     <script>
-        document.querySelectorAll('a').forEach( link => {
+        document.querySelectorAll('a').forEach(link => {
             const conteudo = document.getElementById('conteudo')
 
             link.onclick = e => {
@@ -38,4 +45,5 @@
         })
     </script>
 </body>
+
 </html>

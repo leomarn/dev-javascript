@@ -1,0 +1,30 @@
+<h1>Slide de Imagens Desafio</h1>
+<style>
+    .mySlides {
+        display:none
+    }
+</style>
+<picture >
+    <img class="mySlides" src="../img/img_mountains_wide.jpg" alt="Mountains">
+    <img class="mySlides" src="../img/img_nature_wide.jpg" alt="Nature">
+    <img class="mySlides" src="../img/img_snow_wide.jpg" alt="Snow">
+    <span onclick="currentDiv(1)">1</span>
+    <span onclick="currentDiv(2)">2</span>
+    <span onclick="currentDiv(3)">3</span>
+</picture>
+<script>
+    let slideIndex = 1
+    showDivs(slideIndex);
+    
+    function currentDiv(n) {
+        showDivs(slideIndex = n);
+    }
+
+    function showDivs(n) {
+        const x = document.getElementsByClassName("mySlides");
+        for (let i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex - 1].style.display = "block";
+    }
+</script>
