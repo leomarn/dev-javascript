@@ -7,14 +7,105 @@
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
-        /* ... */
+        * {
+            box-sizing: border-box;
+            margin: 0 auto;
+            font-family: "Oswald";
+            color: aliceblue;
+        }
+
+        .cabecalho {
+            position: relative;
+            background-color: #333333;
+            height: 60px;
+            border-bottom: solid 3px aqua;
+        }
+
+        .logo {
+            position: inline-block;
+            height: 60px;
+            padding: 20px;
+        }
+        .logo img {
+            height: 100%;
+        }
+
+        .menu {
+            position: absolute;
+            top: 20px;
+            left: 210px;
+            height: 30px;
+            display: none;
+        }
+
+        .menu li {
+            display: inline;
+            padding: 15px;
+            cursor: pointer;
+
+        }
+
+        .menu li a {
+            text-decoration: none;
+        }
+
+        .active,
+        .menu li:hover {
+            background-color: aqua;
+        }
+
+        .autenticacao {
+            position: absolute;
+            top: 20px;
+            right: 10px;
+            display: none;
+
+        }
+
+        .autenticacao a {
+            padding: 5px 15px;
+            text-decoration: none;
+        }
+
+        .botao,
+        destaque {
+            background-color: red;
+            border-radius: 20px;
+        }
+
+        .menu-toggle {
+            position: absolute;
+            right: 30px;
+            top: 20px;
+            display: none;
+        }
+
+        @media (min-width: 700px) {
+            .autenticacao {
+                display: block;
+            }
+        }
+
+        @media (min-width: 540px) {
+            .menu {
+                display: block;
+            }
+        }
+
+        @media (max-width: 540px) {
+            .menu-toggle {
+                display: block;
+                background-color: #333333;
+                border: 0;
+            }
+        }
     </style>
 </head>
 
 <body>
     <header class="cabecalho">
         <div class="logo">
-            <a href="#inicio">
+            <a href="#inicio" class="navlist">
                 <img src="http://files.cod3r.com.br/curso-web/logo.png" alt="Logo" />
             </a>
         </div>
@@ -23,16 +114,16 @@
         </button>
         <nav class="menu">
             <ul>
-                <li>
+                <li class="navlist">
                     <a href="#inicio">Início</a>
                 </li>
-                <li>
+                <li class="navlist">
                     <a href="#cursos">Cursos</a>
                 </li>
-                <li>
+                <li class="navlist">
                     <a href="#sobre">Sobre</a>
                 </li>
-                <li>
+                <li class="navlist">
                     <a href="#contato">Contato</a>
                 </li>
             </ul>
@@ -44,7 +135,21 @@
     </header>
 
     <script>
-        // ...
+        "use strict";
+
+        let navlist = document.querySelectorAll('.navlist');
+
+        for (let i = 0; i < navlist.length; i++) {
+            navlist[i].addEventListener('click', function () {
+                for (let x = 1; x < navlist.length; x++) {
+                    if (navlist[x] == this) {
+                        navlist[x].classList.add('active');
+                    } else {
+                        navlist[x].classList.remove('active');
+                    }
+                }
+            });
+        }
     </script>
 </body>
 
